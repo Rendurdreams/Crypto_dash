@@ -18,12 +18,16 @@ def insert_data_into_db(data):
     cursor = conn.cursor()
 
     # Assuming 'data' is a dictionary with your cryptocurrency data
+       # Assuming 'data' is a dictionary with your cryptocurrency data
     insert_query = (
-        "INSERT INTO cryptocurrencies (id, name, symbol, price, market_cap) "
-        "VALUES (%s, %s, %s, %s, %s)"
+        "INSERT INTO cryptocurrencies (id, name, symbol, price, market_cap, volume_24h, percent_change_1h, percent_change_24h, last_updated) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) "
+        "ON DUPLICATE KEY UPDATE "
+        "name = VALUES(name), symbol = VALUES(symbol), price = VALUES(price), market_cap = VALUES(market_cap), "
+        "volume_24h = VALUES(volume_24h), percent_change_1h = VALUES(percent_change_1h), percent_change_24h = VALUES(percent_change_24h), last_updated = VALUES(last_updated)"
     )
     cursor.execute(insert_query, (
-        data['id'], data['name'], data['symbol'], data['price'], data['market_cap']
+        data['id'], data['name'], data['symbol'], data['price'], data['market_cap'], data['volume_24h'], data['percent_change_1h'], data['percent_change_24h'], data['last_updated']
     ))
 
     conn.commit()
@@ -43,6 +47,10 @@ def main():
                 symbol = coin['symbol']
                 price = coin['quote']['USD']['price']
                 market_cap = coin['quote']['USD']['market_cap']
+                volume_24h = coin['quote']['USD']['volume_24h']
+                percent_change_1h = coin['quote']['USD']['percent_change_1h']
+                percent_change_24h = coin['quote']['USD']['percent_change_24h']
+                last_updated = coin['last_updated']
 
                 # Inserting data into the database
                 insert_data_into_db({
@@ -50,7 +58,11 @@ def main():
                     'name': name,
                     'symbol': symbol,
                     'price': price,
-                    'market_cap': market_cap
+                    'market_cap': market_cap,
+                    'volume_24h': volume_24h,
+                    'percent_change_1h': percent_change_1h,
+                    'percent_change_24h': percent_change_24h,
+                    'last_updated': last_updated
                 })
     else:
         print("Error:", data['status']['error_message'])
