@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    padding: 20px;
+}
+
+section {
+    flex: 1;
+    border: 2px solid purple;
+    margin: 20px 10px; /* Combined margin from two rules */
+    padding: 20px;
+    color: white;
+}
+
+section h2 {
+    text-align: center;
+    color: #fff; /* White color for the title */
+}
