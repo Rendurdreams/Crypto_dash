@@ -36,7 +36,7 @@ def insert_data_into_db(data):
 
 def main():
     api_key = '972f6a08-81de-4288-866c-3d0dca592465'  # Replace with your CoinMarketCap API key
-    crypto_ids = ['52', '3816', '28498', '4166', '12749', '5690']  # replace with desired crypto IDs
+    crypto_ids = ['52', '3155','4642','2634','512','5899','3077']  # replace with desired crypto IDs
     data = fetch_crypto_data(api_key, crypto_ids)
 
     if data['status']['error_code'] == 0:

@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cryptocurrency Dashboard</title>
+    <title>Token Treasury</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
 </head>
 <body>
     <header>
-        <h1>Cryptocurrency Dashboard</h1>
+        <h1>Token Treasury</h1>
     </header>
     <main>
-        <section id="large-cap">
-            <h2>Large Cap Cryptos</h2>
-            <div id="large-cap-container"></div>
+        <section id="Enterprise">
+            <h2>Enterprise Tokens</h2>
+            <div id="Enterprise-container"></div>
         </section>
-        <section id="mid-cap">
-            <h2>Mid Cap Cryptos</h2>
-            <div id="mid-cap-container"></div>
+        <section id="ai-tokens">
+            <h2>Ai Tokens</h2>
+            <div id="ai-tokens-container"></div>
         </section>
-        <section id="small-cap">
-            <h2>Small Cap Cryptos</h2>
-            <div id="small-cap-container"></div>
+        <section id="utility-tokens">
+            <h2>Utility Tokens</h2>
+            <div id="utility-tokens-container"></div>
         </section>
     </main>
+    
     <script>
        fetch('/get_data')
     .then(response => response.json())
     .then(data => {
-        const container = document.getElementById('large-cap-container');
+        const container = document.getElementById('Enterprise-container');
         data.forEach(coin => {
             const div = document.createElement('div');
             div.className = 'crypto-container';
             div.innerHTML = `
-                <h3>${coin.name} (${coin.symbol})</h3>
-                <p>Price: ${coin.price}</p>
-                <hr>
+                <p>${coin.name} (${coin.symbol}) $ ${coin.price}</p>
             `;
             container.appendChild(div);
         });
     })
     .catch(error => console.error('Error:', error));
 
+    
     </script>
+
 </body>
 </html>
