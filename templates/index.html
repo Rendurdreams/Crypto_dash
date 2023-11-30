@@ -18,30 +18,15 @@
             <h2>Ai Tokens</h2>
             <div id="ai-tokens-container"></div>
         </section>
-        <section id="utility-tokens">
-            <h2>Utility Tokens</h2>
-            <div id="utility-tokens-container"></div>
+        <section id="gaming-tokens">
+            <h2>Gaming Tokens</h2>
+            <div id="gaming-tokens-container"></div>
         </section>
     </main>
     
-    <script>
-       fetch('/get_data')
-    .then(response => response.json())
-    .then(data => {
-        const container = document.getElementById('Enterprise-container');
-        data.forEach(coin => {
-            const div = document.createElement('div');
-            div.className = 'crypto-container';
-            div.innerHTML = `
-                <p>${coin.name} (${coin.symbol}) $ ${coin.price}</p>
-            `;
-            container.appendChild(div);
-        });
-    })
-    .catch(error => console.error('Error:', error));
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  
 
-    
-    </script>
+  </body>
 
-</body>
-</html>
+  </html>
