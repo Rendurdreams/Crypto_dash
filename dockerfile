@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim
+FROM python:3.8
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 
 # Define environment variable for Flask to run in production
-ENV FLASK_ENV=production
+ENV FLASK_ENV=development
 
 # Run app.py when the container launches
 CMD ["flask", "run", "--host=0.0.0.0"]

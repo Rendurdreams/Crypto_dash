@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'mydatabase'
+      MYSQL_USER: 'rendur'
+      MYSQL_PASSWORD: 'newpassword'
+      MYSQL_ROOT_PASSWORD: 'rootpassword'
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: 'rendur'
+      PMA_PASSWORD: 'newpassword'
+    ports:
+      - "8080:80"
+
+volumes:
+  db-data:

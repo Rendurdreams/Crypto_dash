@@ -9,7 +9,7 @@ def index():
 
 @app.route('/get_data')
 def get_data():
-    conn = mysql.connector.connect(user='rendur', password='[vt%WMQX-$x2SR/', host='localhost', database='crypto_data')
+    conn = mysql.connector.connect(user='rendur', password='newpassword', host='db', database='mydatabase')
     cursor = conn.cursor(dictionary=True)
 
     cursor.execute("SELECT * FROM cryptocurrencies")
